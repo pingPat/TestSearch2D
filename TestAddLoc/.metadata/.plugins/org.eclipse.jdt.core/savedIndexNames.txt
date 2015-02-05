@@ -1,0 +1,6 @@
+INDEX VERSION 1.126+D:\Tasks\TestAndroid\TestAddLoc\.metadata\.plugins\org.eclipse.jdt.core
+3598460323.index
+1284074322.index
+1823285334.index
+848856923.index
+4123349859.index
