@@ -37,12 +37,12 @@ public class CustomAutoCompleteTextChangedListener implements TextWatcher {
         SearchLocation searchLoc = ((SearchLocation) context);
          
         // query the database based on the user input
-        searchLoc.item = searchLoc.getItemsFromDb(userInput.toString());
+        //searchLoc.item = searchLoc.getItemsFromDb(userInput.toString());
          
         // update the adapater
-        searchLoc.myAdapter.notifyDataSetChanged();
-        searchLoc.myAdapter = new ArrayAdapter<String>(searchLoc, android.R.layout.simple_dropdown_item_1line, searchLoc.item);
-        searchLoc.myAutoComplete.setAdapter(searchLoc.myAdapter);
+        //searchLoc.myAdapter.notifyDataSetChanged();
+        //searchLoc.myAdapter = new ArrayAdapter<String>(searchLoc, android.R.layout.simple_dropdown_item_1line, searchLoc.item);
+        //searchLoc.myAutoComplete.setAdapter(searchLoc.myAdapter);
         Log.e(TAG, "Task Complete");
          
     }

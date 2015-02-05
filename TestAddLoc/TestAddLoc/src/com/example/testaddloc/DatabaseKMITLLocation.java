@@ -47,56 +47,46 @@ public class DatabaseKMITLLocation extends SQLiteOpenHelper {
 			onCreate(db);
 		}
 	
+		private SQLiteDatabase mDb;
+		
+		public Cursor getMatchingLocate(String constraint) throws SQLException {
 
-	/*
-	 * public Cursor fetchItemsByDesc(String inputText) throws SQLException {
-	 * Log.w(TAG, inputText); Cursor mCursor = mDb.query(true, TABLE_NAME, new
-	 * String[] {COL_NAME, COL_LAT, COL_LONG}, COL_NAME + " like '%" + inputText
-	 * + "%'", null, null, null, null, null); if (mCursor != null) {
-	 * mCursor.moveToFirst(); } return mCursor;
-	 * 
-	 * }
-	 */
+	        String queryString =
+	                "SELECT * FROM " + TABLE_NAME;
 
-	  // Read records related to the search term public List<MyObject>
-	public List<MyObject> read(String searchTerm) {
-	  
-	  List<MyObject> recordsList = new ArrayList<MyObject>();
-	  
-	  // select query 
-	  String sql = ""; 
-	  sql += "SELECT * FROM " + TABLE_NAME;
-	  sql += " WHERE " + COL_NAME + " LIKE '%" + searchTerm + "%'";
-	  sql += " ORDER BY " + COL_NAME + " ASC"; 
-	  //sql += " LIMIT 0,5";
-	  
-	  SQLiteDatabase db = this.getWritableDatabase();
-	  
-	  // execute the query 
-	  Cursor cursor = db.rawQuery(sql, null);
-	 
-	  // looping through all rows and adding to list 
-	  if (cursor.moveToFirst()){
-		  do {
-	  
-	  // int productId = Integer.parseInt(cursor.getString(cursor.getColumnIndex(fieldProductId))); 
-	  String objectName = cursor.getString(cursor.getColumnIndex(COL_NAME));
-	  double objectLat = cursor.getDouble(cursor.getColumnIndex(COL_LAT)); 
-	  double objectLng = cursor.getDouble(cursor.getColumnIndex(COL_LONG)); 
-	  MyObject myObjectN = new MyObject(objectName); 
-	  MyObject myObjectLat = new MyObject(objectLat); 
-	  MyObject myObjectLng = new MyObject(objectLng);
-	  
-	  // add to list
-	  recordsList.add(myObjectN);
-	  
-	  } while (cursor.moveToNext()); }
-	  
-	  cursor.close();
-	  db.close();
-	  
-	  // return the list of records 
-	  return recordsList; 
-	  }  
+	        if (constraint != null) {
+	            // Query for any rows where the state name begins with the
+	            // string specified in constraint.
+	            //
+	            // NOTE:
+	            // If wildcards are to be used in a rawQuery, they must appear
+	            // in the query parameters, and not in the query string proper.
+	            // See http://code.google.com/p/android/issues/detail?id=3153
+	            constraint = constraint.trim() + "%";
+	            queryString += " WHERE name LIKE ?";
+	        }
+	        String params[] = { constraint };
+
+	        if (constraint == null) {
+	            // If no parameters are used in the query,
+	            // the params arg must be null.
+	            params = null;
+	        }
+	        try {
+	            Cursor cursor = mDb.rawQuery(queryString, params);
+	            if (cursor != null) {
+	                cursor.moveToFirst();
+	                return cursor;
+	            }
+	        }
+	        catch (SQLException e) {
+	            Log.e("AutoCompleteDbAdapter", e.toString());
+	            throw e;
+	        }
+
+	        return null;
+	    }
+
+
 
 }
