@@ -58,6 +58,8 @@ public class MainActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		md = new GMapV2Direction(this);
+		
 		DatabaseKMITLLocation mHelper = new DatabaseKMITLLocation(this);
 		SQLiteDatabase mDb = mHelper.getmDbHelper().getWritableDatabase();
 		mHelper.close();
@@ -153,8 +155,6 @@ public class MainActivity extends FragmentActivity {
 				//testi.setText(dName+"\n"+String.format("%.7f", dlat)+","+String.format("%.7f", dlng));
 	
 				textInf = (TextView) findViewById(R.id.textInfo);
-
-				md = new GMapV2Direction();
 				
 				if (mDMarker != null)
 					mDMarker.remove();
@@ -166,27 +166,37 @@ public class MainActivity extends FragmentActivity {
 							.icon(BitmapDescriptorFactory
 								.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
 				
-				LatLng startPosition = new LatLng(lat, lng);
-				LatLng endPosition = new LatLng(dlat,dlng);
+				LatLng startPosition = new LatLng(13.7290536, 100.7759985);
+				LatLng endPosition = new LatLng(13.72913,100.778898);
+				
+				Log.e(TAG,"start : "+startPosition);
+				Log.e(TAG,"end : "+endPosition);
 
-				/*Document doc = md.getDocument(startPosition
+				Log.e(TAG, GMapV2Direction.MODE_DRIVING);
+				//try{
+				md.request(startPosition
 		                , endPosition, GMapV2Direction.MODE_DRIVING);
-		        int duration = md.getDurationValue(doc);
-		        String distance = md.getDistanceText(doc);
-		        String strDuration = md.getDurationText(doc);
+				//Log.e(TAG, "doc : "+doc);
+		        //int duration = md.getDurationValue(doc);
+		        //String distance = md.getDistanceText(doc);
+		        //String strDuration = md.getDurationText(doc);
 
-		        ArrayList<LatLng> directionPoint = md.getDirection(doc);
+		        //ArrayList<LatLng> directionPoint = md.getDirection(doc);
+				
 		        PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);
-		        
-		        for(int i = 0 ; i < directionPoint.size() ; i++) {            
+				/*} catch (Exception e) {
+					Log.e(TAG, "ERROR");
+		            e.printStackTrace();
+		        }*/
+		        /*for(int i = 0 ; i < directionPoint.size() ; i++) {            
 		            rectLine.add(directionPoint.get(i));
 		            mMap.addMarker(new MarkerOptions().position(directionPoint.get(i)));
-		        }
-		        
-		        mMap.addPolyline(rectLine);
-		        
-		        textInf.setText("Distance : " + distance + "\n"
-		        				+"Duration : " + strDuration + "\n");*/
+		        }*/
+				
+		        //mMap.addPolyline(rectLine);
+				
+		        //textInf.setText("Distance : " + distance + "\n"
+		        			//	+"Duration : " + strDuration + "\n");
 
 			}
 		}
