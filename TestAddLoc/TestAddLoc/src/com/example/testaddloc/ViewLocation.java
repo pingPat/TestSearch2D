@@ -34,7 +34,7 @@ public class ViewLocation extends Activity{
         setContentView(R.layout.view);
         
         mHelper = new DatabaseKMITLLocation(this);
-        mDb = mHelper.getReadableDatabase();
+        mDb = mHelper.getmDbHelper().getReadableDatabase();
         
         mCursor = mDb.rawQuery("SELECT * FROM " + DatabaseKMITLLocation.TABLE_NAME, null);
         

@@ -1,0 +1,68 @@
+package com.example.testaddloc;
+
+import android.app.Activity;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.FilterQueryProvider;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.SimpleCursorAdapter.CursorToStringConverter;
+
+public class SearchLocation extends Activity {
+
+	public static final String TAG = "SearchLocation.java";
+
+	final static int[] to = new int[] { android.R.id.text1 };
+	final static String[] from = new String[] { "name" };
+
+	private AutoCompleteTextView mLNameView;
+	private DatabaseKMITLLocation mDbHelper;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.searchview);
+		mDbHelper = new DatabaseKMITLLocation(this);
+
+		mLNameView = (AutoCompleteTextView) findViewById(R.id.l_name);
+
+		SimpleCursorAdapter adapter = new SimpleCursorAdapter(this,
+				android.R.layout.simple_dropdown_item_1line, null, from, to);
+		mLNameView.setAdapter(adapter);
+		Log.e(TAG, "Call SimpleCursorAdapter");
+
+		// Set the CursorToStringConverter, to provide the labels for the
+		// choices to be displayed in the AutoCompleteTextView.
+		adapter.setCursorToStringConverter(new CursorToStringConverter() {
+			public String convertToString(android.database.Cursor cursor) {
+				// Get the label for this row out of the "state" column
+				final int columnIndex = cursor.getColumnIndexOrThrow("name");
+				final String str = cursor.getString(columnIndex);
+				Log.e(TAG, "getString from column : " + str);
+				return str;
+			}
+		});
+
+		// Set the FilterQueryProvider, to run queries for choices
+		// that match the specified input.
+		adapter.setFilterQueryProvider(new FilterQueryProvider() {
+			public Cursor runQuery(CharSequence constraint) {
+				// Search for states whose names begin with the specified letters.
+				Cursor cursor = mDbHelper
+						.getMatchingLocate((constraint != null ? constraint
+								.toString() : null));
+				Log.e(TAG, "call Filter");
+				return cursor;
+			}
+		});
+
+	}
+
+}

@@ -33,7 +33,7 @@ public class DeleteLocation extends Activity {
         super.onResume();
         
         mHelper = new DatabaseKMITLLocation(this);
-        mDb = mHelper.getWritableDatabase();
+        mDb = mHelper.getmDbHelper().getWritableDatabase();
         
         mCursor = mDb.rawQuery("SELECT * FROM " + DatabaseKMITLLocation.TABLE_NAME, null);
         

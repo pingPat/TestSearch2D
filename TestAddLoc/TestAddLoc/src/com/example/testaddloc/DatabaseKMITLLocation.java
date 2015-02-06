@@ -11,8 +11,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DatabaseKMITLLocation extends SQLiteOpenHelper {
+public class DatabaseKMITLLocation {
 
+	public static final String TAG = "InDatabase";
 	private static final String DB_NAME = "KMITL_Location";
 	private static final int DB_VERSION = 1;
 
@@ -26,7 +27,8 @@ public class DatabaseKMITLLocation extends SQLiteOpenHelper {
 
 	// private SQLiteDatabase mDb;
 
-		public DatabaseKMITLLocation(Context context) {
+	public class DatabaseHelper extends SQLiteOpenHelper {
+		public DatabaseHelper(Context context) {
 			super(context, DB_NAME, null, DB_VERSION);
 			// TODO Auto-generated constructor stub
 		}
@@ -38,6 +40,7 @@ public class DatabaseKMITLLocation extends SQLiteOpenHelper {
 					+ " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_NAME
 					+ " TEXT, " + COL_LAT + " DOUBLE, " + COL_LONG
 					+ " DOUBLE);");
+			Log.e(TAG, "Create");
 		}
 
 		@Override
@@ -46,47 +49,72 @@ public class DatabaseKMITLLocation extends SQLiteOpenHelper {
 			db.execSQL("DROP TALBE IF EXISTS " + TABLE_NAME);
 			onCreate(db);
 		}
+	}
+
+	private DatabaseHelper mDbHelper;
+	private SQLiteDatabase mDb;
+	private final Activity mActivity;
+
+	public DatabaseKMITLLocation(Activity activity) {
+        this.mActivity = activity;
+        mDbHelper = this.new DatabaseHelper(activity);
+        mDb = mDbHelper.getWritableDatabase();
+    }
 	
-		private SQLiteDatabase mDb;
-		
-		public Cursor getMatchingLocate(String constraint) throws SQLException {
+	public void close() {
+        mDbHelper.close();
+    }
+	
+	public Cursor getMatchingLocate(String constraint) throws SQLException {
 
-	        String queryString =
-	                "SELECT * FROM " + TABLE_NAME;
+		String queryString = "SELECT * FROM " + TABLE_NAME;
 
-	        if (constraint != null) {
-	            // Query for any rows where the state name begins with the
-	            // string specified in constraint.
-	            //
-	            // NOTE:
-	            // If wildcards are to be used in a rawQuery, they must appear
-	            // in the query parameters, and not in the query string proper.
-	            // See http://code.google.com/p/android/issues/detail?id=3153
-	            constraint = constraint.trim() + "%";
-	            queryString += " WHERE name LIKE ?";
-	        }
-	        String params[] = { constraint };
+		if (constraint != null) {
+			// Query for any rows where the state name begins with the
+			// string specified in constraint.
+			//
+			// NOTE:
+			// If wildcards are to be used in a rawQuery, they must appear
+			// in the query parameters, and not in the query string proper.
+			// See http://code.google.com/p/android/issues/detail?id=3153
+			//constraint = constraint.trim() + "%'";
+			//queryString += " WHERE name LIKE '% ?";
+			queryString += " WHERE " + COL_NAME + " LIKE '%" + constraint + "%'";
+			queryString += " ORDER BY " + COL_NAME + " ASC";
+			Log.e(TAG, "Call like");
+		}
+		//String params[] = { constraint };
+		Log.e(TAG, "Call getMatching");
 
-	        if (constraint == null) {
-	            // If no parameters are used in the query,
-	            // the params arg must be null.
-	            params = null;
-	        }
-	        try {
-	            Cursor cursor = mDb.rawQuery(queryString, params);
-	            if (cursor != null) {
-	                cursor.moveToFirst();
-	                return cursor;
-	            }
-	        }
-	        catch (SQLException e) {
-	            Log.e("AutoCompleteDbAdapter", e.toString());
-	            throw e;
-	        }
+		/*if (constraint == null) {
+			// If no parameters are used in the query,
+			// the params arg must be null.
+			params = null;
+		}*/
+		try {
+			//Cursor cursor = mDb.rawQuery(queryString, params);
+			Cursor cursor = mDb.rawQuery(queryString, null);
+			if (cursor != null) {
+				Log.e(TAG, "Cursor moveToFirst");
+				cursor.moveToFirst();
+				Log.e(TAG, "Return Cursor");
+				return cursor;
+			}
+		} catch (SQLException e) {
+			Log.e(TAG, "ERROR");
+			Log.e("AutoCompleteDbAdapter", e.toString());
+			throw e;
+		}
 
-	        return null;
-	    }
+		return null;
+	}
 
+	public DatabaseHelper getmDbHelper() {
+		return mDbHelper;
+	}
 
+	public void setmDbHelper(DatabaseHelper mDbHelper) {
+		this.mDbHelper = mDbHelper;
+	}
 
 }

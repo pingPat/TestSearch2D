@@ -20,7 +20,7 @@ public class AddLocation extends Activity{
         setContentView(R.layout.add);
 
         mHelper = new DatabaseKMITLLocation(this);
-        mDb = mHelper.getWritableDatabase();
+        mDb = mHelper.getmDbHelper().getWritableDatabase();
         
         final EditText editName = (EditText)findViewById(R.id.editName);
         

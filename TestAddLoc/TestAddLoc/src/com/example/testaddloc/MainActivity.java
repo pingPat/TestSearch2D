@@ -58,7 +58,7 @@ public class MainActivity extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 
 		DatabaseKMITLLocation mHelper = new DatabaseKMITLLocation(this);
-		SQLiteDatabase mDb = mHelper.getWritableDatabase();
+		SQLiteDatabase mDb = mHelper.getmDbHelper().getWritableDatabase();
 		mHelper.close();
 		mDb.close();
 		//String alname = getIntent().getExtras().getString("lname");

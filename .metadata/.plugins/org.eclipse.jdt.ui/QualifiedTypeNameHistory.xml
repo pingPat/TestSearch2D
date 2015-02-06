@@ -1,2 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.widget.SimpleCursorAdapter"/>
+<fullyQualifiedTypeName name="android.widget.SimpleCursorAdapter.CursorToStringConverter"/>
+<fullyQualifiedTypeName name="android.widget.FilterQueryProvider"/>
+<fullyQualifiedTypeName name="android.util.Log"/>
+<fullyQualifiedTypeName name="com.example.testaddloc.DatabaseKMITLLocation"/>
+<fullyQualifiedTypeName name="com.example.testaddloc.DatabaseKMITLLocation.DatabaseHelper"/>
+</qualifiedTypeNameHistroy>
