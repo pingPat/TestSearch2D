@@ -52,9 +52,9 @@ public class SearchLocation extends Activity {
                 i.putExtra("mydName", r_name);
                 i.putExtra("mydLat", r_lat);
 				i.putExtra("mydLong", r_long);
+
+
 				Log.e(TAG,"Item Click : "+ r_name + " " + r_lat + "," + r_long);
-				setResult(RESULT_OK, i);
-        		finish();				
 			}
 		});
 		

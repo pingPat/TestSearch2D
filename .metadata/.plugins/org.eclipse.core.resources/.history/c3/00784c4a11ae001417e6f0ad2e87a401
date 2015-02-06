@@ -148,9 +148,14 @@ public class MainActivity extends FragmentActivity {
 				String dName = data.getStringExtra("mydName");
 				Double dlat = data.getDoubleExtra("mydLat", lat);
 				Double dlng = data.getDoubleExtra("mydLong", lng);
-				Log.e(TAG, "Destination : " + dName + " " + dlat + "," + dlng);
+				
 				//TextView testi = (TextView) findViewById(R.id.texti);
 				//testi.setText(dName+"\n"+String.format("%.7f", dlat)+","+String.format("%.7f", dlng));
+				
+				
+				//dName = getIntent().getExtras().getString("mydName");
+				//dlat = getIntent().getExtras().getDouble("mydLat");
+				//dlng = getIntent().getExtras().getDouble("mydLong");
 	
 				textInf = (TextView) findViewById(R.id.textInfo);
 
