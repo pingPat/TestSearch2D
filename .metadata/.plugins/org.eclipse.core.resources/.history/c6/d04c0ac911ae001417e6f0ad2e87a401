@@ -156,7 +156,7 @@ public class MainActivity extends FragmentActivity {
 
 				md = new GMapV2Direction();
 				
-				if (mDMarker != null)
+				/*if (mDMarker != null)
 					mDMarker.remove();
 
 				mDMarker = mMap.addMarker(new MarkerOptions()
@@ -167,7 +167,7 @@ public class MainActivity extends FragmentActivity {
 								.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET)));
 				
 				LatLng startPosition = new LatLng(lat, lng);
-				LatLng endPosition = new LatLng(dlat,dlng);
+				LatLng endPosition = new LatLng(dlat,dlng);*/
 
 				/*Document doc = md.getDocument(startPosition
 		                , endPosition, GMapV2Direction.MODE_DRIVING);
