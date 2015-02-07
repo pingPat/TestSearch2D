@@ -179,12 +179,8 @@ public class MainActivity extends FragmentActivity {
 		                , endPosition, GMapV2Direction.MODE_DRIVING);
 				md.setOnDirectionResponseListener(new OnDirectionResponseListener() {
 			        public void onResponse(String status, Document doc, GMapV2Direction gd) {
-			        		int distance = gd.getTotalDistanceValue(doc);
-			        		Log.e(TAG,"Total Distance : "+distance);
-			        		int duration = gd.getTotalDurationValue(doc);
-			        		Log.e(TAG,"Total Duration : "+duration);
-			        		textInf.setText("Distance : " + distance + " m\n"
-			        				+"Duration : " + duration + " sec");
+			        		String distance = gd.getTotalDistanceText(doc);
+			        		String duration = gd.getTotalDurationText(doc);
 			                ArrayList<LatLng> arr_pos = gd.getDirection(doc);
 			                for(int i = 0 ; i < arr_pos.size() ; i++) {
 			                        Log.i("Position " + i, arr_pos.get(i).latitude
@@ -216,7 +212,8 @@ public class MainActivity extends FragmentActivity {
 				
 		        //mMap.addPolyline(rectLine);
 				
-		        
+		        //textInf.setText("Distance : " + distance + "\n"
+		        			//	+"Duration : " + strDuration + "\n");
 
 			}
 		}

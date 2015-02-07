@@ -183,8 +183,8 @@ public class MainActivity extends FragmentActivity {
 			        		Log.e(TAG,"Total Distance : "+distance);
 			        		int duration = gd.getTotalDurationValue(doc);
 			        		Log.e(TAG,"Total Duration : "+duration);
-			        		textInf.setText("Distance : " + distance + " m\n"
-			        				+"Duration : " + duration + " sec");
+			        		textInf.setText("Distance : " + distance + "\n"
+			        				+"Duration : " + duration + "\n");
 			                ArrayList<LatLng> arr_pos = gd.getDirection(doc);
 			                for(int i = 0 ; i < arr_pos.size() ; i++) {
 			                        Log.i("Position " + i, arr_pos.get(i).latitude
