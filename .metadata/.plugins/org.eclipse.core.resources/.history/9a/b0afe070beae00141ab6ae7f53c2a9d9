@@ -189,10 +189,10 @@ public class MainActivity extends FragmentActivity {
 			        }
 				});
 				//Log.e(TAG, "doc : "+doc);
+		        //int duration = md.getDurationValue(doc);
+		        //String distance = md.getDistanceText(doc);
+		        //String strDuration = md.getDurationText(doc);
 
-				//int duration = gd.getDurationValue(doc);
-		        //String distance = gd.getDistanceText(doc);
-		        //String strDuration = gd.getDurationText(doc);
 		        //ArrayList<LatLng> directionPoint = md.getDirection(doc);
 				
 		        //PolylineOptions rectLine = new PolylineOptions().width(3).color(Color.RED);
