@@ -23,4 +23,5 @@
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="android.os.AsyncTask"/>
 <fullyQualifiedTypeName name="android.util.DisplayMetrics"/>
+<fullyQualifiedTypeName name="com.example.testaddloc.GMapV2Direction.OnDirectionResponseListener"/>
 </qualifiedTypeNameHistroy>
