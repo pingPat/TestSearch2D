@@ -15,7 +15,6 @@
 <fullyQualifiedTypeName name="android.database.sqlite.SQLiteDatabase"/>
 <fullyQualifiedTypeName name="android.widget.ListView"/>
 <fullyQualifiedTypeName name="android.os.Bundle"/>
-<fullyQualifiedTypeName name="android.widget.AdapterView"/>
 <fullyQualifiedTypeName name="com.example.testaddloc.DeleteLocation"/>
 <fullyQualifiedTypeName name="android.widget.EditText"/>
 <fullyQualifiedTypeName name="android.widget.TextView"/>
@@ -34,7 +33,6 @@
 <fullyQualifiedTypeName name="com.example.testaddloc.MyObject"/>
 <fullyQualifiedTypeName name="android.widget.AdapterView.OnItemClickListener"/>
 <fullyQualifiedTypeName name="com.example.testaddloc.MainActivity"/>
-<fullyQualifiedTypeName name="com.example.testaddloc.SearchLocation"/>
 <fullyQualifiedTypeName name="android.widget.SimpleCursorAdapter"/>
 <fullyQualifiedTypeName name="android.widget.SimpleCursorAdapter.CursorToStringConverter"/>
 <fullyQualifiedTypeName name="android.app.Activity"/>
@@ -45,4 +43,9 @@
 <fullyQualifiedTypeName name="android.os.StrictMode"/>
 <fullyQualifiedTypeName name="org.w3c.dom.Document"/>
 <fullyQualifiedTypeName name="com.google.android.gms.maps.model.PolylineOptions"/>
+<fullyQualifiedTypeName name="com.example.testaddloc.SearchLocation"/>
+<fullyQualifiedTypeName name="android.content.DialogInterface"/>
+<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.AdapterView"/>
+<fullyQualifiedTypeName name="com.example.testaddloc.GMapV2Direction"/>
 </qualifiedTypeNameHistroy>

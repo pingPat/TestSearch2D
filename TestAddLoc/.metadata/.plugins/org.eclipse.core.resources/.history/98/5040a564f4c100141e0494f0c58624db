@@ -174,10 +174,10 @@ public class MainActivity extends FragmentActivity {
 				Log.e(TAG,"start : "+startPosition);
 				Log.e(TAG,"end : "+endPosition);
 
-				Log.e(TAG, dMode);
+				Log.e(TAG, GMapV2Direction.MODE_DRIVING);
 				//try{
 				md.request(startPosition
-		                , endPosition, dMode);
+		                , endPosition, GMapV2Direction.MODE_DRIVING);
 				md.setOnDirectionResponseListener(new OnDirectionResponseListener() {
 			        public void onResponse(String status, Document doc, GMapV2Direction gd) {
 			        		int distance = gd.getTotalDistanceValue(doc);

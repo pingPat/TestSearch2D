@@ -26,9 +26,6 @@ public class SearchLocation extends Activity {
 
 	private AutoCompleteTextView mLNameView;
 	private DatabaseKMITLLocation mDbHelper;
-	
-	String mode = " ";
-	//Intent i = new Intent(getApplicationContext(),MainActivity.class);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,23 +50,15 @@ public class SearchLocation extends Activity {
 				String r_name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
 				double r_lat = cursor.getDouble(cursor.getColumnIndex("latitude"));
                 double r_long = cursor.getDouble(cursor.getColumnIndex("longitude"));
-                final Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                i.putExtra("mydName", r_name);
-                i.putExtra("mydLat", r_lat);
-				i.putExtra("mydLong", r_long);
-				Log.e(TAG,"Item Click : "+ r_name + " " + r_lat + "," + r_long);
-				AlertDialog.Builder builder = new AlertDialog.Builder(SearchLocation.this);
+                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                AlertDialog.Builder builder = new AlertDialog.Builder(SearchLocation.this);
                 builder.setTitle("เลือกรูปแบบการนำทาง");
                 builder.setPositiveButton("Driving", new DialogInterface.OnClickListener() {
 					
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						mode = "driving";
-						i.putExtra("mydMode", mode);
-						Log.e(TAG,"Mode : "+ mode);
-						setResult(RESULT_OK, i);
-						finish();
+						String m_drive = "driving";
 					}
 				});
                 builder.setNegativeButton("Walking", new DialogInterface.OnClickListener() {
@@ -77,19 +66,16 @@ public class SearchLocation extends Activity {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						// TODO Auto-generated method stub
-						mode = "walking";
-						i.putExtra("mydMode", mode);
-						Log.e(TAG,"Mode : "+ mode);
-						setResult(RESULT_OK, i);
-						finish();
+						String m_walk = "walking";
 					}
 				});
                 builder.show();
-				
-				//i.putExtra("mydMode", mode);
-				//Log.e(TAG,"Item Click : "+ r_name + " " + r_lat + "," + r_long);
-				//setResult(RESULT_OK, i);
-				//finish();
+                i.putExtra("mydName", r_name);
+                i.putExtra("mydLat", r_lat);
+				i.putExtra("mydLong", r_long);
+				Log.e(TAG,"Item Click : "+ r_name + " " + r_lat + "," + r_long);
+				setResult(RESULT_OK, i);
+        		finish();				
 			}
 		});
 		

@@ -151,7 +151,7 @@ public class MainActivity extends FragmentActivity {
 				String dName = data.getStringExtra("mydName");
 				Double dlat = data.getDoubleExtra("mydLat", lat);
 				Double dlng = data.getDoubleExtra("mydLong", lng);
-				String dMode = data.getStringExtra("mydMode");
+				//String dMode = data.getStringExtra("mydMode");
 				Log.e(TAG, "Destination : " + dName + " " + dlat + "," + dlng);
 				//TextView testi = (TextView) findViewById(R.id.texti);
 				//testi.setText(dName+"\n"+String.format("%.7f", dlat)+","+String.format("%.7f", dlng));
@@ -174,7 +174,7 @@ public class MainActivity extends FragmentActivity {
 				Log.e(TAG,"start : "+startPosition);
 				Log.e(TAG,"end : "+endPosition);
 
-				Log.e(TAG, dMode);
+				Log.e(TAG, GMapV2Direction.MODE_DRIVING);
 				//try{
 				md.request(startPosition
 		                , endPosition, dMode);
